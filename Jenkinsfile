@@ -1,7 +1,7 @@
 pipeline{
 	agent{
 		label{
-				label'built-in'
+				label'172.31.32.157'
 				customWorkspace '/project'
 				
 		}
@@ -10,6 +10,7 @@ pipeline{
 		stage('install http')
 		{
 		steps{
+		sh "chmod -R 777 /project"
 		sh "sudo yum install httpd -y"
 		sh "sudo service httpd start"
 		}
@@ -18,7 +19,7 @@ pipeline{
 		{
 		steps{
 		sh "sudo cp  -r index.html /var/www/html/"
-		sh "sudo chmod -R 777 index.html"
+		sh "sudo chmod 777 index.html"
 		}
 		}
 	}
